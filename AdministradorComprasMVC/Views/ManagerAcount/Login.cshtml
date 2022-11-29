@@ -1,0 +1,48 @@
+﻿@model AdministradorComprasMVC.Models.Usuario
+@{
+    Layout = null;
+}
+<!--maquetado del modal-->
+<form asp-action="Login" asp-controller="ManagerAcount">
+    <div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Login de Acceso</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input asp-for="Email" class="form-control" placeholder="Nombre de Usuario" />
+              <br />
+              <input asp-for="Password" class="form-control" placeholder="Password" type="password" /> 
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-sm btn-success" data-bs-dismiss="modal">Login</button>
+            <button type="button" class="btn btn-sm btn-primary">Registrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+<!--cierre de maquetado-->
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/datatables.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AdministradorComprasMvc.styles.css" asp-append-version="true" />
+    <!--template-->
+    <link rel="stylesheet" href="~/css/templateSite.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+    
+    @*<script src="https://code.jquery.com/jquery-3.4.1.min.js" asp-append-version="true"></script>*@
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/datatables.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById("modalLogin"), {keyboard: false});
+        document.onreadystatechange = function () {
+            myModal.show();
+        };
+    </script>
