@@ -52,5 +52,7 @@ namespace AdministradorComprasMVC.Models
 
         //Composición: llevarse todo d eun solo tajo
         public DireccionProveedor? Direccion { get; set; }
+
+        public List<Articulo>? Articulos { get; set; }
     }
 }

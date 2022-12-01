@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AdministradorComprasMVC.Data;
 using AdministradorComprasMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdministradorComprasMVC.Controllers
 {
@@ -41,6 +42,35 @@ namespace AdministradorComprasMVC.Controllers
                 dbContext.SaveChanges();
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Manager()
+        {
+            var usuario = HttpContext.Session.GetString("user");
+            ViewBag.user = usuario;
+            if (usuario != null)
+            {
+                var provedores = dbContext.Proveedor.Include("Direccion")
+                .Include("Articulos");//Inner Join
+                return View(provedores);
+            }
+            return RedirectToAction("Login", "ManagerAccount");
+        }
+
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var articulos = dbContext.Articulos.Where(p => p.ProveedorId == id).ToList();
+            if (articulos == null)
+            {
+                return NotFound();
+            }
+            return View(articulos);
         }
     }
 }

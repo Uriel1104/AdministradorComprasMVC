@@ -20,6 +20,7 @@ namespace AdministradorComprasMVC.Controllers
         public IActionResult Create()
         {
             ViewBag.Categorias = new SelectList(context.Categorias.ToList(), "Id", "Nombre");
+            ViewBag.Proveedores = new SelectList(context.Proveedor.ToList(), "Id", "Razon_Social");
             return View();
         }
 

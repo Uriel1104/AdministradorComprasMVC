@@ -141,17 +141,31 @@ namespace AdministradorComprasMVC.Controllers
         [AllowAnonymous]
         public IActionResult Login([Bind(include:"Email, Password")] AspnetUsers users)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    var claim = new Claim(ClaimTypes.NameIdentifier, users.Id.ToString());
+            //    var claimEmail = new Claim(ClaimTypes.Email, users.Email.ToString());
+            //    var claimName = new Claim(ClaimTypes.Name, users.Email.ToString());
+            //    dbContext.AspNetUsers.Where(p => p.Email == users.Email && p.Password == users.Password)
+            //        .FirstOrDefault();
+            //    return RedirectToAction("Index", "Home");
+
+            //}
+            //return View();
             if (ModelState.IsValid)
             {
-                var claim = new Claim(ClaimTypes.NameIdentifier, users.Id.ToString());
-                var claimEmail = new Claim(ClaimTypes.Email, users.Email.ToString());
-                var claimName = new Claim(ClaimTypes.Name, users.Email.ToString());
-                dbContext.AspNetUsers.Where(p => p.Email == users.Email && p.Password == users.Password)
+                var user = dbContext.AspNetUsers.Where(p => p.Email == users.Email
+                && p.Password == users.Password)
                     .FirstOrDefault();
-                return RedirectToAction("Index", "Home");
+                if(user != null)
+                {
+                    HttpContext.Session.SetString("user", user.Email);
+                    return RedirectToAction("Index", "Home");
+                }
 
             }
-            return View();
+            ModelState.AddModelError("error", "El usuario y la contraseña son incorrectos");
+                return View();
         }
     }
 }
