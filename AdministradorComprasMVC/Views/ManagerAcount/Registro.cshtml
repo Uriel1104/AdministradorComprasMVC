@@ -1,0 +1,28 @@
+﻿@model AdministradorComprasMVC.Models.Usuario
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Registra tu cuenta
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Registro" asp-controller="ManagerAcount">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" placeholder="Nombre del Usiario" />
+                        <br />
+                        <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

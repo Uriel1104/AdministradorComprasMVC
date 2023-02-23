@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AdministradorComprasMVC.Models.Proveedor>
+
+@{
+    ViewData["Title"] = "Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Administrador de provedores</h1>
+<strong>
+   Bienvenido:
+</strong>
+ <span class="text-primary">@ViewBag.user</span>
+
+
+<p>
+    <a asp-action="Create" asp-controller="Proveedor">Nuevo</a>
+</p>
+<table class="table">
+
+    <thead class="table-dark">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Razon_Social)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Contacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tel_Principal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.E_mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion.calle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion.Entidad)
+            </th>
+           
+            <th>
+                @Html.DisplayName("Articulo")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Razon_Social)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tel_Principal)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.E_mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion.calle)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion.Entidad)
+            </td>
+          <td>
+                    @if (item.Articulos.Count() > 0)
+                    {
+                        @Html.DisplayFor(modelItem=> item.Articulos[0].Nombre)
+                    }
+                    else
+                    {
+                        @Html.Display("No Existen Articulos para este proveedor")
+                    }
+                </td>
+                @*Envio el id*@
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-success">Detalle</a> 
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-success">Editar</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

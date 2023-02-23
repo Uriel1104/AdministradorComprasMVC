@@ -1,0 +1,38 @@
+﻿@model AdministradorComprasMVC.Models.Rol
+
+@*<noscript>
+    <meta http-equiv="refresh" content="0; URL=@Url.Action("NoScript", "Error")" />
+</noscript>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card offset-2">
+                <div class="card-header">
+                    <div class="card-title">Roles del Sistema</div>
+                </div>
+                <div class="card-body">
+                    <form id="frmGuardar" asp-action="Create" asp-controller="ManagerAcount">
+                        <div class="form-group">
+                            <input asp-for="Nombre" placeholder="Nombre del Rol" required class="form-control" />
+                            <span asp-validation-for="Nombre" class="link-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <textarea asp-for="Descripcion" placeholder="Nombre de la Descripcion" required class="form-control">
+                            </textarea>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Registrar" />
+                            <a href="@Url.Action("Index", "ManagerAccount")" class="btn btn-link">Mostrar todos los roles</a>
+                        </div>
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
